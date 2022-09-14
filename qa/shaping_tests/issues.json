@@ -1,0 +1,10 @@
+{
+	"tests": [
+		{
+			"expectation": "uni1A37=0+659|uni1A37.blwf=0+192|space=3+391|uni1A37=4+659|uni1A37.blwf=4+192",
+			"input": "ᨷ᩠ᨷ ᨷ᩠ᨸ",
+			"note": "Issue #1",
+			"only": "NotoSansTaiTham-Regular.ttf"
+		}
+	]
+}

@@ -5,6 +5,12 @@
 			"input": "ᨷ᩠ᨷ ᨷ᩠ᨸ",
 			"note": "Issue #1",
 			"only": "NotoSansTaiTham-Regular.ttf"
+		},
+		{
+			"input": "ᨠᩅᨿ ᨠ᩠ᩅ᩠ᨿ",
+			"note": "Issue #3",
+			"only": "NotoSansTaiTham-Regular.ttf",
+			"expectation": "uni1A20=0+1058|uni1A45=1+617|uni1A3F=2+1058|space=3+391|uni1A20=4+1058|wa_yaLowtham=4+243"
 		}
 	]
 }

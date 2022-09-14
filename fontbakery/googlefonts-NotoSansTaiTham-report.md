@@ -1,11 +1,11 @@
 ## Fontbakery report
 
-Fontbakery version: 0.8.9
+Fontbakery version: 0.8.10
 
 <details><summary><b>[3] Family checks</b></summary><div><details><summary>🔥 <b>FAIL:</b> Checking all files are in the same directory. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/single_directory">com.google.fonts/check/family/single_directory</a>)</summary><div>
 
 
-* 🔥 **FAIL** Not all fonts passed in the command line are in the same directory. This may lead to bad results as the tool will interpret all font files as belonging to a single font family. The detected directories are: ['fonts/NotoSansTaiTham/googlefonts/slim-variable-ttf', 'fonts/NotoSansTaiTham/googlefonts/ttf', 'fonts/NotoSansTaiTham/googlefonts/variable-ttf'] [code: single-directory]
+* 🔥 **FAIL** Not all fonts passed in the command line are in the same directory. This may lead to bad results as the tool will interpret all font files as belonging to a single font family. The detected directories are: ['fonts/NotoSansTaiTham/googlefonts/ttf', 'fonts/NotoSansTaiTham/googlefonts/variable-ttf'] [code: single-directory]
 </div></details><details><summary>🔥 <b>FAIL:</b> Fonts have consistent PANOSE proportion? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/os2.html#com.google.fonts/check/family/panose_proportion">com.google.fonts/check/family/panose_proportion</a>)</summary><div>
 
 
@@ -14,294 +14,24 @@ Fontbakery version: 0.8.9
 
 
 * 🔥 **FAIL** PANOSE family type is not the same across this family. In order to fix this, please make sure that the panose.bFamilyType value is the same in the OS/2 table of all of this family font files. [code: inconsistency]
-</div></details><br></div></details><details><summary><b>[24] NotoSansTaiTham[wght].ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Check Google Fonts glyph coverage. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/glyph_coverage">com.google.fonts/check/glyph_coverage</a>)</summary><div>
-
-
-* 🔥 **FAIL** Missing required codepoints:
-
-	- 0x00AF (MACRON)
- [code: missing-codepoints]
-</div></details><details><summary>🔥 <b>FAIL:</b> Ensure variable fonts include an avar table. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/mandatory_avar_table">com.google.fonts/check/mandatory_avar_table</a>)</summary><div>
-
-
-* 🔥 **FAIL** This variable font does not have an avar table. [code: missing-avar]
-</div></details><details><summary>🔥 <b>FAIL:</b> Check Google Fonts glyph coverage. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/glyph_coverage">com.google.fonts/check/glyph_coverage</a>)</summary><div>
-
-
-* 🔥 **FAIL** Missing required codepoints:
-
-	- 0x00AF (MACRON)
- [code: missing-codepoints]
-</div></details><details><summary>🔥 <b>FAIL:</b> Ensure variable fonts include an avar table. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/mandatory_avar_table">com.google.fonts/check/mandatory_avar_table</a>)</summary><div>
-
-
-* 🔥 **FAIL** This variable font does not have an avar table. [code: missing-avar]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
+</div></details><br></div></details><details><summary><b>[11] NotoSansTaiTham-Bold.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
 
 
 * 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
-
-
-* 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
-</div></details><details><summary>🔥 <b>FAIL:</b> Validates that when an instance record is included for the default instance, its subfamilyNameID value is set to either 2 or 17, and its postScriptNameID value is set to 6. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/fvar.html#com.adobe.fonts/check/varfont/valid_default_instance_nameids">com.adobe.fonts/check/varfont/valid_default_instance_nameids</a>)</summary><div>
-
-
-* 🔥 **FAIL** 'Regular' instance has the same coordinates as the default instance; its subfamilyNameID should be either 2 or 17, instead of 265. [code: invalid-default-instance-subfamily-nameid:265]
-</div></details><details><summary>🔥 <b>FAIL:</b> Validates that when an instance record is included for the default instance, its subfamilyNameID value is set to either 2 or 17, and its postScriptNameID value is set to 6. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/fvar.html#com.adobe.fonts/check/varfont/valid_default_instance_nameids">com.adobe.fonts/check/varfont/valid_default_instance_nameids</a>)</summary><div>
-
-
-* 🔥 **FAIL** 'Regular' instance has the same coordinates as the default instance; its subfamilyNameID should be either 2 or 17, instead of 265. [code: invalid-default-instance-subfamily-nameid:265]
-</div></details><details><summary>⚠ <b>WARN:</b> Check copyright namerecords match license file. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license">com.google.fonts/check/name/license</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> License URL matches License text on name table? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license_url">com.google.fonts/check/name/license_url</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=14] [code: http-in-license-info]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
-
-
-* ⚠ **WARN** This font lacks caret positioning values for these ligature glyphs:
-	- maiKang_maiSattham.blwf1
-	- maiKang_tone1tham.blwf1
-	- maiSat_maiSattham
-	- maiSat_tone1tham
-	- signI_maiKangLaitham
-	- signI_maiKangtham
-	- signO_maiSattham.blwf1
-	- signO_tone1tham.blwf1
-	- signOaAbove_tone1tham.blwf1
-	- taHigh.watham
-	- uni1AA9
-	- wa_yaLowtham
-
-   [code: incomplete-caret-pos-data]
-</div></details><details><summary>⚠ <b>WARN:</b> Is there kerning info for non-ligated sequences? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/kerning_for_non_ligated_sequences">com.google.fonts/check/kerning_for_non_ligated_sequences</a>)</summary><div>
-
-
-* ⚠ **WARN** GPOS table lacks kerning info for the following non-ligated sequences:
-
-	- uni1A55 + uni1A20
-
-	- uni1A20 + uni1A6F
-
-	- uni1A6F + uni1A20
-
-	- uni1A20 + uni1A71
-
-	- uni1A71 + uni1A20
-
-	- uni1A20 + uni1A6E
-
-	- uni1A6E + uni1A20
-
-	- uni1A20 + uni1A70
-
-	- uni1A70 + uni1A20
-
-	- uni1A20 + uni1A72 
-
-	- And 11 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: lacks-kern-info]
-</div></details><details><summary>⚠ <b>WARN:</b> Ensure fonts have ScriptLangTags declared on the 'meta' table. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/meta/script_lang_tags">com.google.fonts/check/meta/script_lang_tags</a>)</summary><div>
-
-
-* ⚠ **WARN** This font file does not have a 'meta' table. [code: lacks-meta-table]
-</div></details><details><summary>⚠ <b>WARN:</b> Check copyright namerecords match license file. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license">com.google.fonts/check/name/license</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> License URL matches License text on name table? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license_url">com.google.fonts/check/name/license_url</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=14] [code: http-in-license-info]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
-
-
-* ⚠ **WARN** This font lacks caret positioning values for these ligature glyphs:
-	- maiKang_maiSattham.blwf1
-	- maiKang_tone1tham.blwf1
-	- maiSat_maiSattham
-	- maiSat_tone1tham
-	- signI_maiKangLaitham
-	- signI_maiKangtham
-	- signO_maiSattham.blwf1
-	- signO_tone1tham.blwf1
-	- signOaAbove_tone1tham.blwf1
-	- taHigh.watham
-	- uni1AA9
-	- wa_yaLowtham
-
-   [code: incomplete-caret-pos-data]
-</div></details><details><summary>⚠ <b>WARN:</b> Is there kerning info for non-ligated sequences? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/kerning_for_non_ligated_sequences">com.google.fonts/check/kerning_for_non_ligated_sequences</a>)</summary><div>
-
-
-* ⚠ **WARN** GPOS table lacks kerning info for the following non-ligated sequences:
-
-	- uni1A55 + uni1A20
-
-	- uni1A20 + uni1A6F
-
-	- uni1A6F + uni1A20
-
-	- uni1A20 + uni1A71
-
-	- uni1A71 + uni1A20
-
-	- uni1A20 + uni1A6E
-
-	- uni1A6E + uni1A20
-
-	- uni1A20 + uni1A70
-
-	- uni1A70 + uni1A20
-
-	- uni1A20 + uni1A72 
-
-	- And 11 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: lacks-kern-info]
-</div></details><details><summary>⚠ <b>WARN:</b> Ensure fonts have ScriptLangTags declared on the 'meta' table. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/meta/script_lang_tags">com.google.fonts/check/meta/script_lang_tags</a>)</summary><div>
-
-
-* ⚠ **WARN** This font file does not have a 'meta' table. [code: lacks-meta-table]
-</div></details><details><summary>⚠ <b>WARN:</b> Check font contains no unreachable glyphs (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/unreachable_glyphs">com.google.fonts/check/unreachable_glyphs</a>)</summary><div>
-
-
-* ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
-
-	- shaHigh_raMedial_signAitham
-
-	- rue_raMedial_signAitham
-
-	- rue_raMedial_signAetham
-
-	- shaHigh_raMedial_signThamAitham
-
-	- lue_signAetham
-
-	- uni1A31.blwf
-
-	- uni1A40.blwf
-
-	- lue_raMedial_signAitham
-
-	- lue_signAitham
-
-	- lue_raMedial_signThamAitham 
-
-	- And 28 more.
-
-Use -F or --full-lists to disable shortening of long lists.
- [code: unreachable-glyphs]
-</div></details><details><summary>⚠ <b>WARN:</b> Ensure dotted circle glyph is present and can attach marks. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/dotted_circle">com.google.fonts/check/dotted_circle</a>)</summary><div>
-
-
-* ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
-</div></details><details><summary>⚠ <b>WARN:</b> Check font contains no unreachable glyphs (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/unreachable_glyphs">com.google.fonts/check/unreachable_glyphs</a>)</summary><div>
-
-
-* ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
-
-	- shaHigh_raMedial_signAitham
-
-	- rue_raMedial_signAitham
-
-	- rue_raMedial_signAetham
-
-	- shaHigh_raMedial_signThamAitham
-
-	- lue_signAetham
-
-	- uni1A31.blwf
-
-	- uni1A40.blwf
-
-	- lue_raMedial_signAitham
-
-	- lue_signAitham
-
-	- lue_raMedial_signThamAitham 
-
-	- And 28 more.
-
-Use -F or --full-lists to disable shortening of long lists.
- [code: unreachable-glyphs]
-</div></details><details><summary>⚠ <b>WARN:</b> Ensure dotted circle glyph is present and can attach marks. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/dotted_circle">com.google.fonts/check/dotted_circle</a>)</summary><div>
-
-
-* ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
-</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
-
-
-* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
-	 acutecomb (U+0301), gravecomb (U+0300), tildecomb (U+0303), uni0302 (U+0302), uni0304 (U+0304), uni0306 (U+0306), uni0307 (U+0307), uni0308 (U+0308), uni030A (U+030A), uni030B (U+030B) and 5 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
-</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
-
-
-* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
-	 acutecomb (U+0301), gravecomb (U+0300), tildecomb (U+0303), uni0302 (U+0302), uni0304 (U+0304), uni0306 (U+0306), uni0307 (U+0307), uni0308 (U+0308), uni030A (U+030A), uni030B (U+030B) and 5 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
-</div></details><br></div></details><details><summary><b>[15] NotoSansTaiTham-Bold.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Check Google Fonts glyph coverage. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/glyph_coverage">com.google.fonts/check/glyph_coverage</a>)</summary><div>
-
-
-* 🔥 **FAIL** Missing required codepoints:
-
-	- 0x00AF (MACRON)
- [code: missing-codepoints]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
-
-
-* 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
-</div></details><details><summary>⚠ <b>WARN:</b> Check copyright namerecords match license file. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license">com.google.fonts/check/name/license</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> License URL matches License text on name table? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license_url">com.google.fonts/check/name/license_url</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=14] [code: http-in-license-info]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
 </div></details><details><summary>⚠ <b>WARN:</b> Glyphs are similiar to Google Fonts version? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/production_glyphs_similarity">com.google.fonts/check/production_glyphs_similarity</a>)</summary><div>
 
 
 * ⚠ **WARN** Following glyphs differ greatly from Google Fonts version:
-	* chaHigh_raMedial_signAitham
-	* uni1A2C.blwf2
-	* khaLow_signThamAitham
-	* lla.haHigh_signAitham
-	* na_raMedial_signOotham
-	* uni00611A72
-	* yaHigh_signOotham
-	* haLow_signOotham
-	* faHigh_raMedial_signAetham
-	* khaLow_signAetham and 464 more.
+	* a_raMedial_signAetham
+	* a_raMedial_signAitham
+	* a_raMedial_signEtham
+	* a_raMedial_signOotham
+	* a_raMedial_signThamAitham
+	* ba_raMedial_signAetham
+	* ba_raMedial_signAitham
+	* ba_raMedial_signOotham
+	* ba_raMedial_signThamAitham
+	* ba_signAetham and 464 more.
 
 Use -F or --full-lists to disable shortening of long lists.
 </div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
@@ -331,25 +61,25 @@ Use -F or --full-lists to disable shortening of long lists.
 
 * ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
 
-	- shaHigh_raMedial_signAitham
-
-	- rue_raMedial_signAitham
-
-	- rue_raMedial_signAetham
-
-	- shaHigh_raMedial_signThamAitham
-
-	- lue_signAetham
-
-	- uni1A31.blwf
-
-	- uni1A40.blwf
+	- lue_raMedial_signAetham
 
 	- lue_raMedial_signAitham
 
+	- lue_raMedial_signEtham
+
+	- lue_raMedial_signOotham
+
+	- lue_raMedial_signThamAitham
+
+	- lue_raMedialtham
+
+	- lue_signAetham
+
 	- lue_signAitham
 
-	- lue_raMedial_signThamAitham 
+	- lue_signEtham
+
+	- lue_signOotham 
 
 	- And 28 more.
 
@@ -374,13 +104,6 @@ The following glyphs do not have the recommended number of contours:
 
 
 * ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
-</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
-
-
-* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
-	 acutecomb (U+0301), gravecomb (U+0300), tildecomb (U+0303), uni0302 (U+0302), uni0304 (U+0304), uni0306 (U+0306), uni0307 (U+0307), uni0308 (U+0308), uni030A (U+030A), uni030B (U+030B) and 5 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
 </div></details><details><summary>⚠ <b>WARN:</b> Does GPOS table have kerning information? This check skips monospaced fonts as defined by post.isFixedPitch value (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gpos.html#com.google.fonts/check/gpos_kerning_info">com.google.fonts/check/gpos_kerning_info</a>)</summary><div>
 
 
@@ -455,63 +178,24 @@ Use -F or --full-lists to disable shortening of long lists. [code: found-jaggy-s
 	* uni1A50 (U+1A50): L<<84.0,203.0>--<211.0,204.0>> 
 
 	* And uni1A50 (U+1A50): L<<89.0,385.0>--<87.0,660.0>> [code: found-semi-vertical]
-</div></details><br></div></details><details><summary><b>[19] NotoSansTaiTham-Medium.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Check Google Fonts glyph coverage. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/glyph_coverage">com.google.fonts/check/glyph_coverage</a>)</summary><div>
-
-
-* 🔥 **FAIL** Missing required codepoints:
-
-	- 0x00AF (MACRON)
- [code: missing-codepoints]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWeightClass. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/usweightclass">com.google.fonts/check/usweightclass</a>)</summary><div>
-
-
-* 🔥 **FAIL** OS/2 usWeightClass is '482' when it should be '500'. [code: bad-value]
-</div></details><details><summary>🔥 <b>FAIL:</b> PPEM must be an integer on hinted fonts. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/integer_ppem_if_hinted">com.google.fonts/check/integer_ppem_if_hinted</a>)</summary><div>
-
-
-* 🔥 **FAIL** This is a hinted font, so it must have bit 3 set on the flags of the head table, so that PPEM values will be rounded into an integer value.
-
-This can be accomplished by using the 'gftools fix-hinting' command.
-
-# create virtualenv
-python3 -m venv venv
-# activate virtualenv
-source venv/bin/activate
-# install gftools
-pip install git+https://www.github.com/googlefonts/tools [code: bad-flags]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
+</div></details><br></div></details><details><summary><b>[13] NotoSansTaiTham-Medium.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
 
 
 * 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
-</div></details><details><summary>⚠ <b>WARN:</b> Check copyright namerecords match license file. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license">com.google.fonts/check/name/license</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> License URL matches License text on name table? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license_url">com.google.fonts/check/name/license_url</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=14] [code: http-in-license-info]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
 </div></details><details><summary>⚠ <b>WARN:</b> Glyphs are similiar to Google Fonts version? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/production_glyphs_similarity">com.google.fonts/check/production_glyphs_similarity</a>)</summary><div>
 
 
 * ⚠ **WARN** Following glyphs differ greatly from Google Fonts version:
-	* chaHigh_raMedial_signAitham
-	* uni1A2C.blwf2
-	* khaLow_signThamAitham
-	* lla.haHigh_signAitham
-	* na_raMedial_signOotham
-	* uni00611A72
-	* yaHigh_signOotham
-	* haLow_signOotham
-	* faHigh_raMedial_signAetham
-	* uni1A28 and 574 more.
+	* a_raMedial_signAetham
+	* a_raMedial_signAitham
+	* a_raMedial_signEtham
+	* a_raMedial_signOotham
+	* a_raMedial_signThamAitham
+	* ba_raMedial_signAetham
+	* ba_raMedial_signAitham
+	* ba_raMedial_signEtham
+	* ba_raMedial_signOotham
+	* ba_raMedial_signThamAitham and 574 more.
 
 Use -F or --full-lists to disable shortening of long lists.
 </div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
@@ -548,25 +232,25 @@ Please take a look at the conversation at https://github.com/googlefonts/fontbak
 
 * ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
 
-	- shaHigh_raMedial_signAitham
-
-	- rue_raMedial_signAitham
-
-	- rue_raMedial_signAetham
-
-	- shaHigh_raMedial_signThamAitham
-
-	- lue_signAetham
-
-	- uni1A31.blwf
-
-	- uni1A40.blwf
+	- lue_raMedial_signAetham
 
 	- lue_raMedial_signAitham
 
+	- lue_raMedial_signEtham
+
+	- lue_raMedial_signOotham
+
+	- lue_raMedial_signThamAitham
+
+	- lue_raMedialtham
+
+	- lue_signAetham
+
 	- lue_signAitham
 
-	- lue_raMedial_signThamAitham 
+	- lue_signEtham
+
+	- lue_signOotham 
 
 	- And 28 more.
 
@@ -591,13 +275,6 @@ The following glyphs do not have the recommended number of contours:
 
 
 * ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
-</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
-
-
-* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
-	 acutecomb (U+0301), gravecomb (U+0300), tildecomb (U+0303), uni0302 (U+0302), uni0304 (U+0304), uni0306 (U+0306), uni0307 (U+0307), uni0308 (U+0308), uni030A (U+030A), uni030B (U+030B) and 5 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
 </div></details><details><summary>⚠ <b>WARN:</b> Does GPOS table have kerning information? This check skips monospaced fonts as defined by post.isFixedPitch value (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gpos.html#com.google.fonts/check/gpos_kerning_info">com.google.fonts/check/gpos_kerning_info</a>)</summary><div>
 
 
@@ -684,46 +361,24 @@ Use -F or --full-lists to disable shortening of long lists. [code: found-misalig
 	* uni1A50 (U+1A50): L<<179.0,705.0>--<178.0,490.0>> 
 
 	* And uni1A50 (U+1A50): L<<84.0,-86.0>--<83.0,169.0>> [code: found-semi-vertical]
-</div></details><br></div></details><details><summary><b>[14] NotoSansTaiTham-Regular.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Check Google Fonts glyph coverage. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/glyph_coverage">com.google.fonts/check/glyph_coverage</a>)</summary><div>
-
-
-* 🔥 **FAIL** Missing required codepoints:
-
-	- 0x00AF (MACRON)
- [code: missing-codepoints]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
+</div></details><br></div></details><details><summary><b>[10] NotoSansTaiTham-Regular.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
 
 
 * 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
-</div></details><details><summary>⚠ <b>WARN:</b> Check copyright namerecords match license file. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license">com.google.fonts/check/name/license</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> License URL matches License text on name table? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license_url">com.google.fonts/check/name/license_url</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=14] [code: http-in-license-info]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
 </div></details><details><summary>⚠ <b>WARN:</b> Glyphs are similiar to Google Fonts version? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/production_glyphs_similarity">com.google.fonts/check/production_glyphs_similarity</a>)</summary><div>
 
 
 * ⚠ **WARN** Following glyphs differ greatly from Google Fonts version:
+	* a_raMedial_signAitham
+	* a_raMedial_signOotham
 	* chaHigh_raMedial_signAitham
-	* khaLow_signThamAitham
-	* lla.haHigh_signAitham
-	* haLow_signOotham
-	* uni1A65.blwf1
-	* haLow_raMedial_signOotham
-	* phaLow_signAitham
-	* ssaHigh_signThamAitham
-	* ma_signOotham
-	* nya_raMedial_signOotham and 101 more.
+	* chaHigh_raMedial_signOotham
+	* chaHigh_raMedial_signThamAitham
+	* chaHigh_signAitham
+	* chaHigh_signOotham
+	* chaHigh_signThamAitham
+	* greatSa_raMedial_signAitham
+	* greatSa_raMedial_signOotham and 101 more.
 
 Use -F or --full-lists to disable shortening of long lists.
 </div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
@@ -753,25 +408,25 @@ Use -F or --full-lists to disable shortening of long lists.
 
 * ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
 
-	- shaHigh_raMedial_signAitham
-
-	- rue_raMedial_signAitham
-
-	- rue_raMedial_signAetham
-
-	- shaHigh_raMedial_signThamAitham
-
-	- lue_signAetham
-
-	- uni1A31.blwf
-
-	- uni1A40.blwf
+	- lue_raMedial_signAetham
 
 	- lue_raMedial_signAitham
 
+	- lue_raMedial_signEtham
+
+	- lue_raMedial_signOotham
+
+	- lue_raMedial_signThamAitham
+
+	- lue_raMedialtham
+
+	- lue_signAetham
+
 	- lue_signAitham
 
-	- lue_raMedial_signThamAitham 
+	- lue_signEtham
+
+	- lue_signOotham 
 
 	- And 28 more.
 
@@ -796,13 +451,6 @@ The following glyphs do not have the recommended number of contours:
 
 
 * ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
-</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
-
-
-* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
-	 acutecomb (U+0301), gravecomb (U+0300), tildecomb (U+0303), uni0302 (U+0302), uni0304 (U+0304), uni0306 (U+0306), uni0307 (U+0307), uni0308 (U+0308), uni030A (U+030A), uni030B (U+030B) and 5 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
 </div></details><details><summary>⚠ <b>WARN:</b> Does GPOS table have kerning information? This check skips monospaced fonts as defined by post.isFixedPitch value (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gpos.html#com.google.fonts/check/gpos_kerning_info">com.google.fonts/check/gpos_kerning_info</a>)</summary><div>
 
 
@@ -845,63 +493,24 @@ Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
 	* uni1A50 (U+1A50): L<<84.0,-86.0>--<82.0,156.0>> 
 
 	* And uni1A50 (U+1A50): L<<86.0,419.0>--<87.0,636.0>> [code: found-semi-vertical]
-</div></details><br></div></details><details><summary><b>[18] NotoSansTaiTham-SemiBold.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Check Google Fonts glyph coverage. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/glyph_coverage">com.google.fonts/check/glyph_coverage</a>)</summary><div>
-
-
-* 🔥 **FAIL** Missing required codepoints:
-
-	- 0x00AF (MACRON)
- [code: missing-codepoints]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWeightClass. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/usweightclass">com.google.fonts/check/usweightclass</a>)</summary><div>
-
-
-* 🔥 **FAIL** OS/2 usWeightClass is '586' when it should be '600'. [code: bad-value]
-</div></details><details><summary>🔥 <b>FAIL:</b> PPEM must be an integer on hinted fonts. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/integer_ppem_if_hinted">com.google.fonts/check/integer_ppem_if_hinted</a>)</summary><div>
-
-
-* 🔥 **FAIL** This is a hinted font, so it must have bit 3 set on the flags of the head table, so that PPEM values will be rounded into an integer value.
-
-This can be accomplished by using the 'gftools fix-hinting' command.
-
-# create virtualenv
-python3 -m venv venv
-# activate virtualenv
-source venv/bin/activate
-# install gftools
-pip install git+https://www.github.com/googlefonts/tools [code: bad-flags]
-</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
+</div></details><br></div></details><details><summary><b>[12] NotoSansTaiTham-SemiBold.ttf</b></summary><div><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
 
 
 * 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
-</div></details><details><summary>⚠ <b>WARN:</b> Check copyright namerecords match license file. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license">com.google.fonts/check/name/license</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
-</div></details><details><summary>⚠ <b>WARN:</b> License URL matches License text on name table? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/name/license_url">com.google.fonts/check/name/license_url</a>)</summary><div>
-
-
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=13] [code: http-in-description]
-* ⚠ **WARN** Please consider using HTTPS URLs at name table entry [plat=3, enc=1, name=14] [code: http-in-license-info]
-* ⚠ **WARN** For now we're still accepting http URLs, but you should consider using https instead.
- [code: http]
 </div></details><details><summary>⚠ <b>WARN:</b> Glyphs are similiar to Google Fonts version? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/production_glyphs_similarity">com.google.fonts/check/production_glyphs_similarity</a>)</summary><div>
 
 
 * ⚠ **WARN** Following glyphs differ greatly from Google Fonts version:
-	* chaHigh_raMedial_signAitham
-	* uni1A2C.blwf2
-	* khaLow_signThamAitham
-	* lla.haHigh_signAitham
-	* na_raMedial_signOotham
-	* uni00611A72
-	* yaHigh_signOotham
-	* haLow_signOotham
-	* faHigh_raMedial_signAetham
-	* uni1A28 and 562 more.
+	* a_raMedial_signAetham
+	* a_raMedial_signAitham
+	* a_raMedial_signEtham
+	* a_raMedial_signOotham
+	* a_raMedial_signThamAitham
+	* ba_raMedial_signAetham
+	* ba_raMedial_signAitham
+	* ba_raMedial_signEtham
+	* ba_raMedial_signOotham
+	* ba_raMedial_signThamAitham and 562 more.
 
 Use -F or --full-lists to disable shortening of long lists.
 </div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
@@ -938,25 +547,25 @@ Please take a look at the conversation at https://github.com/googlefonts/fontbak
 
 * ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
 
-	- shaHigh_raMedial_signAitham
-
-	- rue_raMedial_signAitham
-
-	- rue_raMedial_signAetham
-
-	- shaHigh_raMedial_signThamAitham
-
-	- lue_signAetham
-
-	- uni1A31.blwf
-
-	- uni1A40.blwf
+	- lue_raMedial_signAetham
 
 	- lue_raMedial_signAitham
 
+	- lue_raMedial_signEtham
+
+	- lue_raMedial_signOotham
+
+	- lue_raMedial_signThamAitham
+
+	- lue_raMedialtham
+
+	- lue_signAetham
+
 	- lue_signAitham
 
-	- lue_raMedial_signThamAitham 
+	- lue_signEtham
+
+	- lue_signOotham 
 
 	- And 28 more.
 
@@ -981,13 +590,6 @@ The following glyphs do not have the recommended number of contours:
 
 
 * ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
-</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
-
-
-* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
-	 acutecomb (U+0301), gravecomb (U+0300), tildecomb (U+0303), uni0302 (U+0302), uni0304 (U+0304), uni0306 (U+0306), uni0307 (U+0307), uni0308 (U+0308), uni030A (U+030A), uni030B (U+030B) and 5 more.
-
-Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
 </div></details><details><summary>⚠ <b>WARN:</b> Does GPOS table have kerning information? This check skips monospaced fonts as defined by post.isFixedPitch value (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gpos.html#com.google.fonts/check/gpos_kerning_info">com.google.fonts/check/gpos_kerning_info</a>)</summary><div>
 
 
@@ -1066,13 +668,109 @@ Use -F or --full-lists to disable shortening of long lists. [code: found-jaggy-s
 	* uni1A50 (U+1A50): L<<84.0,-86.0>--<83.0,185.0>> 
 
 	* And uni1A50 (U+1A50): L<<88.0,398.0>--<87.0,651.0>> [code: found-semi-vertical]
+</div></details><br></div></details><details><summary><b>[11] NotoSansTaiTham[wght].ttf</b></summary><div><details><summary>💔 <b>ERROR:</b> Check font names are correct (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/font_names">com.google.fonts/check/font_names</a>)</summary><div>
+
+
+* 💔 **ERROR** The condition <FontBakeryCondition:expected_font_names> had an error: KeyError: 'fvar'
+</div></details><details><summary>💔 <b>ERROR:</b> Check a font's STAT table contains compulsory Axis Values. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/STAT">com.google.fonts/check/STAT</a>)</summary><div>
+
+
+* 💔 **ERROR** The condition <FontBakeryCondition:expected_font_names> had an error: KeyError: 'fvar'
+</div></details><details><summary>💔 <b>ERROR:</b> Check variable font instances (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/fvar_instances">com.google.fonts/check/fvar_instances</a>)</summary><div>
+
+
+* 💔 **ERROR** The condition <FontBakeryCondition:expected_font_names> had an error: KeyError: 'fvar'
+</div></details><details><summary>🔥 <b>FAIL:</b> Checking OS/2 usWinAscent & usWinDescent. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/family/win_ascent_and_descent">com.google.fonts/check/family/win_ascent_and_descent</a>)</summary><div>
+
+
+* 🔥 **FAIL** OS/2.usWinAscent value should be equal or greater than 1079, but got 1034 instead [code: ascent]
+</div></details><details><summary>⚠ <b>WARN:</b> Are there caret positions declared for every ligature? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/ligature_carets">com.google.fonts/check/ligature_carets</a>)</summary><div>
+
+
+* ⚠ **WARN** This font lacks caret position values for ligature glyphs on its GDEF table. [code: lacks-caret-pos]
+</div></details><details><summary>⚠ <b>WARN:</b> Is there kerning info for non-ligated sequences? (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/kerning_for_non_ligated_sequences">com.google.fonts/check/kerning_for_non_ligated_sequences</a>)</summary><div>
+
+
+* ⚠ **WARN** GPOS table lacks kerning info for the following non-ligated sequences:
+
+	- uni1A55 + uni1A20
+
+	- uni1A20 + uni1A6F
+
+	- uni1A6F + uni1A20
+
+	- uni1A20 + uni1A71
+
+	- uni1A71 + uni1A20
+
+	- uni1A20 + uni1A6E
+
+	- uni1A6E + uni1A20
+
+	- uni1A20 + uni1A70
+
+	- uni1A70 + uni1A20
+
+	- uni1A20 + uni1A72 
+
+	- And 13 more.
+
+Use -F or --full-lists to disable shortening of long lists. [code: lacks-kern-info]
+</div></details><details><summary>⚠ <b>WARN:</b> Ensure variable fonts include an avar table. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/mandatory_avar_table">com.google.fonts/check/mandatory_avar_table</a>)</summary><div>
+
+
+* ⚠ **WARN** This variable font does not have an avar table. [code: missing-avar]
+</div></details><details><summary>⚠ <b>WARN:</b> Ensure fonts have ScriptLangTags declared on the 'meta' table. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/googlefonts.html#com.google.fonts/check/meta/script_lang_tags">com.google.fonts/check/meta/script_lang_tags</a>)</summary><div>
+
+
+* ⚠ **WARN** This font file does not have a 'meta' table. [code: lacks-meta-table]
+</div></details><details><summary>⚠ <b>WARN:</b> Check font contains no unreachable glyphs (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/unreachable_glyphs">com.google.fonts/check/unreachable_glyphs</a>)</summary><div>
+
+
+* ⚠ **WARN** The following glyphs could not be reached by codepoint or substitution rules:
+
+	- lue_raMedial_signAetham
+
+	- lue_raMedial_signAitham
+
+	- lue_raMedial_signEtham
+
+	- lue_raMedial_signOotham
+
+	- lue_raMedial_signThamAitham
+
+	- lue_raMedialtham
+
+	- lue_signAetham
+
+	- lue_signAitham
+
+	- lue_signEtham
+
+	- lue_signOotham 
+
+	- And 28 more.
+
+Use -F or --full-lists to disable shortening of long lists.
+ [code: unreachable-glyphs]
+</div></details><details><summary>⚠ <b>WARN:</b> Ensure dotted circle glyph is present and can attach marks. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/universal.html#com.google.fonts/check/dotted_circle">com.google.fonts/check/dotted_circle</a>)</summary><div>
+
+
+* ⚠ **WARN** No dotted circle glyph present [code: missing-dotted-circle]
+</div></details><details><summary>⚠ <b>WARN:</b> Check mark characters are in GDEF mark glyph class. (<a href="https://font-bakery.readthedocs.io/en/stable/fontbakery/profiles/gdef.html#com.google.fonts/check/gdef_mark_chars">com.google.fonts/check/gdef_mark_chars</a>)</summary><div>
+
+
+* ⚠ **WARN** The following mark characters could be in the GDEF mark glyph class:
+	 uni1A56 (U+1A56), uni1A58 (U+1A58), uni1A59 (U+1A59), uni1A5A (U+1A5A), uni1A5B (U+1A5B), uni1A5C (U+1A5C), uni1A5D (U+1A5D), uni1A5E (U+1A5E), uni1A60 (U+1A60), uni1A65 (U+1A65) and 14 more.
+
+Use -F or --full-lists to disable shortening of long lists. [code: mark-chars]
 </div></details><br></div></details>
 ### Summary
 
 | 💔 ERROR | 🔥 FAIL | ⚠ WARN | 💤 SKIP | ℹ INFO | 🍞 PASS | 🔎 DEBUG |
 |:-----:|:----:|:----:|:----:|:----:|:----:|:----:|
-| 0 | 23 | 70 | 653 | 39 | 550 | 0 |
-| 0% | 2% | 5% | 49% | 3% | 41% | 0% |
+| 3 | 8 | 49 | 533 | 32 | 450 | 0 |
+| 0% | 1% | 5% | 50% | 3% | 42% | 0% |
 
 **Note:** The following loglevels were omitted in this report:
 * **SKIP**

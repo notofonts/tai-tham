@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Diffenator3</title>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+	<style type="text/css">
+		@font-face {
+      font-family: "Font Before";
+      src: url();
+    }
+
+    @font-face {
+      font-family: "Font After";
+      src: url();
+    }
+
+    .font-before, .font-after {
+      font-variation-settings: "wght" 400, "wdth" 100;
+    }
+
+    .font-before {
+      font-family: "Font Before", "Adobe Notdef";
+    }
+
+    .font-after {
+      font-family: "Font After", "Adobe Notdef";
+    }
+
+	:root {
+	--node-pt-size: 40px;
+	}
+
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-color: #b3d4f5 !important;
+    font-family: "Montserrat", sans-serif !important;
+}
+
+.nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
+    background-color: #ced9e4 !important;
+}
+.nav-item {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.nav-pills .nav-link{
+    background-color: #9fcaf5 !important;
+}
+h4 {
+    color: #6f7882 !important;
+}
+
+@font-face {
+    font-family: "Adobe NotDef";
+    src: url(https://cdn.jsdelivr.net/gh/adobe-fonts/adobe-notdef/AND-Regular.ttf);
+}
+
+.box-title {
+    width: 100%;
+    font-size: 8pt;
+    font-weight: 700;
+    border-top: 1px solid black;
+    padding-top: 5px;
+    margin-bottom: 10pt;
+    display: block;
+}
+
+.box {
+    margin-bottom: 20pt;
+    width: 100%;
+    float: left;
+}
+
+.box-text {}
+
+#ui-nav {
+    position: fixed;
+    right: 20px;
+    z-index: 100;
+}
+
+#font-toggle {}
+
+.ui-nav-item {
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+    text-align: center;
+    color: white;
+    background-color: black;
+    display: block;
+    font-size: 14pt;
+    padding: 5px;
+    margin: 2px;
+}
+
+/* Stuff needed for the table differ */
+body {
+    font-family: Helvetica;
+}
+
+.node {
+    font-family: courier;
+    cursor: pointer;
+    position: relative;
+    left: 30px;
+    padding: 5px;
+    display: block;
+    border: 1px dashed grey;
+    background-color: #e9e9ee;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.attr-before {
+    color: green;
+    cursor: text;
+}
+
+.attr-after {
+    color: red;
+    cursor: text;
+}
+
+.leaf {
+    font-weight: bold;
+}
+
+.old .cell .new {
+    display: none;
+}
+
+.new .cell .old {
+    display: none;
+}
+
+.both .cell .old {
+    opacity: 0.75;
+    color: red;
+}
+
+.both .cell .new {
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    color: green;
+}
+
+.spacer {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+#ot-panel {
+    max-height: 400px;
+    overflow-y: scroll;
+    background: white;
+    padding: 10px;
+    display: none;
+   }
+
+   .cell{
+    z-index: -100;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 5pt;
+    margin: 5pt;
+    width: 50pt;
+    font-size: var(--node-pt-size);
+    line-height: calc(var(--node-pt-size) * 1.5);
+  }
+  .cell-word{
+    z-index: -100;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 5pt;
+    margin: 5pt;
+    font-size: var(--node-pt-size);
+    line-height: calc(var(--node-pt-size) * 1.5);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .cell-glyph{
+    z-index: -100;
+    float: left;
+    display: block;
+    text-align: center;
+    border-radius: 5pt;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 5pt;
+    margin: 5pt;
+    width: calc(var(--node-pt-size) * 2);
+    min-height: calc(var(--node-pt-size) * 2);
+    font-size: var(--node-pt-size);
+  }
+  .cell-glyph.font-before, .cell-word.font-before {
+    background: #eff6f2;
+  }
+  .cell-glyph.font-after, .cell-word.font-after {
+    background: #f7f4f4;
+  }
+
+  .cell-glyph:hover {
+    box-shadow: none;
+    background: #f0f0f5;
+  }
+  .cat-strings .cell {
+    clear: both;
+    position: static;
+    float: none;
+    text-align: left;
+  }
+  .codepoint {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 10pt;
+    line-height: 10pt;
+  }
+  .box-title {
+    clear: both;
+  }
+  .node.closed::before {
+    content: "+";
+    margin-right: 5pt;
+  }
+  .node.open::before {
+    content: "-";
+    margin-right: 5pt;
+  }
+
+  .tooltip pre {
+    background-color: #6f7882;
+    padding: 5px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .tooltip {
+    line-height: 1em;
+  }
+  .tooltip-inner {
+    max-width: 300px;
+  }
+
+  h1,h2,h3,h4,h5 {
+    clear: both;
+  }
+
+  #locationnav li {
+    white-space: wrap;
+  }
+
+  #userdefined div { width: 100%; }
+  
+/* The following rules are used in the WASM version, not in the CLI version.
+   But we keep them here so we can share them between the two versions. */
+
+   .modal-dialog {
+    max-width: 100% !important;
+    margin: 0 !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+  }
+
+  .fontdrop {
+    padding: 30px;
+    border-radius: 20px;
+    outline: 3px dashed #ffffffff;
+    outline-offset: -20px;
+  }
+
+  #fontbefore {
+    background-color: #ddffdddd;
+  }
+
+  #fontafter {
+    background-color: #ffdddddd;
+  }
+
+  .dragging {
+    background-image: linear-gradient(rgb(0 0 0/5%) 0 0);
+    outline: 5px dashed #ffffffff;
+  }
+
+  #diffkerns {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+		</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+		<div id="ui-nav">
+		  <div class="ui-nav-item" id="fonttoggle">Old</div>
+		  <div class="ui-nav-item" id="fontanimate">Animate</div>
+		  <div id="axes">
+		  </div>
+		</div>
+	
+	<div class="row">
+		<div class="col-2">
+			<ul class="nav nav-pills" id="locationnav">
+			</ul>
+		</div>
+		<div class="col-9 mt-3">
+			<div id="title"></div>
+			<div id="cmapdiff"> </div>
+			<div id="main"></div>
+			<div id="userdefined">
+				<h4>User defined sample text</h4>
+				<div contenteditable="true" class="font-before cell-word">
+					You can type your own text here to see it previewed in the fonts.
+				</div>
+				<div style="clear: both"></div>
+			</div>
+			<div id="diffkerns"> </div>
+			<div id="difftable"> </div>
+		</div>
+	</div>
+	<script type="module">
+		function renderTableDiff(node, toplevel) {
+  var wrapper = $("<div> </div>");
+  if (!node) {
+    return wrapper;
+  }
+  if (Array.isArray(node) && node.length == 2) {
+    var before = $("<span/>");
+    before.addClass("attr-before");
+    before.html(" " + node[0] + " ");
+    var after = $("<span/>");
+    after.addClass("attr-after");
+    after.append(renderTableDiff(node[1], true).children());
+    wrapper.append(before);
+    wrapper.append(after);
+    return wrapper;
+  }
+  if (node.constructor != Object) {
+    var thing = $("<span/>");
+    thing.html(node);
+    wrapper.append(thing);
+    return wrapper;
+  }
+  for (const [key, value] of Object.entries(node)) {
+    var display = $("<div/>");
+    display.addClass("node");
+    if (!toplevel) {
+      display.hide();
+    }
+    display.append(key);
+    display.append(renderTableDiff(value, false).children());
+    if (display.children(".node").length > 0) {
+      display.addClass("closed");
+    }
+    wrapper.append(display);
+  }
+  return wrapper;
+}
+
+function addAGlyph(glyph, where) {
+  let title = "";
+  if (glyph.name) {
+    title = "name: " + glyph.name;
+  }
+  let cp =
+    "<br>U+" +
+    glyph.string.codePointAt(0).toString(16).padStart(4, "0").toUpperCase();
+  where.append(`
+        <div class="cell-glyph font-before">
+        <div data-toggle="tooltip" data-html="true" data-title="${glyph.differing_pixels} pixels"> ${glyph.string}
+        <div class="codepoint" data-toggle="tooltip" data-html="true" data-title="${title}">
+		${cp}
+        </div>
+        </div>
+    `);
+}
+
+function addAWord(diff, where) {
+  if (!diff.buffer_b) {
+    diff.buffer_b = diff.buffer_a;
+  }
+  where.append(`
+		<div class="cell-word font-before">
+		<span data-toggle="tooltip" data-html="true" data-title="Before: <pre>${diff.buffer_a}</pre>After: <pre>${diff.buffer_b}</pre><br>difference: ${diff.differing_pixels} pixels">
+		${diff.word}
+		</span>
+		</div>
+	`);
+}
+
+function diffTables(report) {
+  $("#difftable").empty();
+  $("#difftable").append(`<h4 class="mt-2 box-title">Table-level details</h4>`);
+  $("#difftable").append(
+    renderTableDiff({ tables: report["tables"] }, true).children()
+  );
+  $("#difftable .node").on("click", function (e) {
+    $(this).toggleClass("closed open");
+    $(this).children(".node").toggle();
+    e.stopPropagation();
+  });
+}
+function diffKerns(report) {
+  $("#diffkerns").empty();
+  $("#diffkerns").append(`<h4 class="mt-2">Modified Kerns</h4>`);
+  $("#diffkerns").append(
+    `<table class="table table-striped" id="diffkerns"><tr><th>Pair</th><th>Old</old><th>New</th></table>`
+  );
+  for (let [pair, value] of Object.entries(report["kerns"])) {
+    if (pair == "error") {
+      $("#diffkerns").append(`<p class="text-danger">Error: ${value}</p>`);
+      continue;
+    } else {
+      let row = $("<tr>");
+      row.append(`<td>${pair}</td>`);
+      row.append(`<td>${serializeKernBefore(value)}</td>`);
+      row.append(`<td>${serializeKernAfter(value)}</td>`);
+      $("#diffkerns table").append(row);
+    }
+  }
+}
+
+function serializeKernBefore(kern) {
+  if (Array.isArray(kern)) {
+    return serializeKern(kern[0], -1);
+  }
+  return serializeKern(kern, 0);
+}
+
+function serializeKernAfter(kern) {
+  if (Array.isArray(kern)) {
+    return serializeKern(kern[1], -1);
+  }
+  return serializeKern(kern, 1);
+}
+
+function serializeKern(kern, index) {
+  let string = "";
+  if (kern === null || kern === undefined) {
+    return "(null)";
+  }
+  if (kern.x) {
+    string += serializeKernValue(kern.x, index);
+  } else if (kern.y) {
+    string = "0";
+  }
+
+  if (kern.y) {
+    string += "," + serializeKernValue(kern.y, index);
+  }
+  if (!kern.x_placement && !kern.y_placement) {
+    return string;
+  }
+  string += "@";
+  if (kern.x_placement) {
+    string += serializeKernValue(kern.x_placement, index);
+  } else if (kern.y_placement) {
+    string += "0";
+  }
+  if (kern.y_placement) {
+    string += "," + serializeKernValue(kern.y_placement, index);
+  }
+  return string;
+}
+
+function serializeKernValue(kern, index) {
+  if (typeof kern == "number") {
+    return kern;
+  }
+  let string = "(";
+  let verybig = Object.entries(kern).length > 5;
+  for (let [key, value] of Object.entries(kern)) {
+    if (key == "default") {
+      string += value[index] + " ";
+    } else {
+      string += value[index] + "@" + key + " ";
+    }
+    if (verybig) {
+      string += "<br>";
+    }
+  }
+  return string.trim() + ")";
+}
+
+function cmapDiff(report) {
+  if (report.cmap_diff && (report.cmap_diff.new || report.cmap_diff.missing)) {
+    $("#cmapdiff").append(
+      `<h4 class="mt-2">Added and Removed Encoded Glyphs</h4>`
+    );
+    if (report["cmap_diff"]["new"]) {
+      $("#cmapdiff").append(`<h4 class="box-title">Added Glyphs</h4>`);
+      let added = $("<div>");
+      for (let glyph of report["cmap_diff"]["new"]) {
+        addAGlyph(glyph, added);
+      }
+      $("#cmapdiff").append(added);
+    }
+
+    if (report["cmap_diff"]["missing"]) {
+      $("#cmapdiff").append(`<h4 class="box-title">Removed Glyphs</h4>`);
+      let missing = $("<div>");
+      for (let glyph of report["cmap_diff"]["missing"]) {
+        addAGlyph(glyph, missing);
+      }
+      $("#cmapdiff").append(missing);
+    }
+  } else {
+    $("#cmapdiff").append(`<p>No changes to encoded glyphs</p>`);
+  }
+}
+
+function setupAnimation() {
+  $("#fonttoggle").click(function () {
+    if ($(this).text() == "Old") {
+      $(this).text("New");
+      $(".font-before").removeClass("font-before").addClass("font-after");
+    } else {
+      $(this).text("Old");
+      $(".font-after").removeClass("font-after").addClass("font-before");
+    }
+  });
+
+  let animationHandle;
+  function animate() {
+    $("#fonttoggle").click();
+    animationHandle = setTimeout(animate, 1000);
+  }
+  $("#fontanimate").click(function () {
+    if ($(this).text() == "Animate") {
+      $(this).text("Stop");
+      animate();
+    } else {
+      $(this).text("Animate");
+      clearTimeout(animationHandle);
+    }
+  });
+}
+
+export {
+  renderTableDiff,
+  addAGlyph,
+  addAWord,
+  cmapDiff,
+  diffTables,
+  diffKerns,
+  setupAnimation,
+};
+
+	var report = {"tables":{"GDEF":{"glyph_classes":{"error":"There are 648 changes, check manually!"},"lig_carets":[null,{"kaHigh_raMedial_signOotham":[{"coordinate":{"wght=700":632,"default":612}},{"coordinate":{"default":892,"wght=700":912}}],"kaHigh_raMedialtham":[{"coordinate":{"default":316,"wght=700":340}}],"kaHigh_raMedial_signAetham":[{"coordinate":{"wght=700":1156,"default":1152}},{"coordinate":{"wght=700":1436,"default":1432}}],"kaHigh_raMedial_signEtham":[{"coordinate":{"default":556,"wght=700":596}},{"coordinate":856}],"kaHigh_signAetham":[{"coordinate":1162}],"kaHigh_signEtham":[{"coordinate":{"wght=700":592,"default":582}}],"kaHigh_raMedial_signAitham":[{"coordinate":{"default":612,"wght=700":609}},{"coordinate":{"default":892,"wght=700":889}}],"kaHigh_signOotham":[{"coordinate":{"default":612,"wght=700":623}}],"kaHigh_signAitham":[{"coordinate":{"default":602,"wght=700":622}}],"khaHigh_raMedialtham":[{"coordinate":{"default":312,"wght=700":322}}],"khaHigh_raMedial_signAetham":[{"coordinate":{"wght=700":1158,"default":1136}},{"coordinate":{"wght=700":1438,"default":1416}}],"kaHigh_raMedial_signThamAitham":[{"coordinate":{"wght=700":632,"default":622}},{"coordinate":{"default":902,"wght=700":912}}],"khaHigh_raMedial_signAitham":[{"coordinate":{"default":602,"wght=700":612}},{"coordinate":{"wght=700":892,"default":882}}],"khaHigh_signEtham":[{"coordinate":{"wght=700":592,"default":582}}],"kaHigh_signThamAitham":[{"coordinate":{"wght=700":632,"default":622}}],"khaHigh_raMedial_signOotham":[{"coordinate":{"wght=700":622,"default":612}},{"coordinate":{"default":892,"wght=700":902}}],"khaHigh_raMedial_signThamAitham":[{"coordinate":612},{"coordinate":892}],"khaHigh_signOotham":[{"coordinate":{"default":612,"wght=700":622}}],"khaHigh_signAitham":[{"coordinate":{"default":602,"wght=700":622}}],"kxaHigh_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"khaHigh_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}}],"khaHigh_raMedial_signEtham":[{"coordinate":{"default":582,"wght=700":592}},{"coordinate":{"default":862,"wght=700":872}}],"khaHigh_signThamAitham":[{"coordinate":{"wght=700":612,"default":592}}],"kxaHigh_raMedial_signEtham":[{"coordinate":{"default":602,"wght=700":594}},{"coordinate":{"wght=700":892,"default":882}}],"kxaHigh_raMedial_signAitham":[{"coordinate":{"default":602,"wght=700":612}},{"coordinate":{"default":882,"wght=700":892}}],"kxaHigh_signAetham":[{"coordinate":{"default":1162,"wght=700":1172}}],"kxaHigh_signEtham":[{"coordinate":602}],"kxaHigh_raMedial_signThamAitham":[{"coordinate":{"default":602,"wght=700":612}},{"coordinate":{"wght=700":892,"default":882}}],"kxaHigh_raMedialtham":[{"coordinate":{"default":352,"wght=700":362}}],"kxaHigh_signAitham":[{"coordinate":622}],"kxaHigh_raMedial_signOotham":[{"coordinate":612},{"coordinate":892}],"kaLow_raMedialtham":[{"coordinate":{"default":352,"wght=700":362}}],"kaLow_raMedial_signAetham":[{"coordinate":1142},{"coordinate":1422}],"kxaHigh_signThamAitham":[{"coordinate":622}],"kaLow_raMedial_signAitham":[{"coordinate":{"default":582,"wght=700":602}},{"coordinate":{"default":862,"wght=700":882}}],"kaLow_signEtham":[{"coordinate":{"wght=700":602,"default":592}}],"kaLow_signAetham":[{"coordinate":{"default":1162,"wght=700":1182}}],"kaLow_signOotham":[{"coordinate":622}],"kxaHigh_signOotham":[{"coordinate":{"default":622,"wght=700":632}}],"kaLow_signAitham":[{"coordinate":622}],"kaLow_raMedial_signThamAitham":[{"coordinate":{"default":612,"wght=700":622}},{"coordinate":{"wght=700":922,"default":892}}],"kaLow_raMedial_signEtham":[{"coordinate":{"wght=700":582,"default":572}},{"coordinate":{"default":852,"wght=700":862}}],"kxaLow_raMedial_signEtham":[{"coordinate":{"default":612,"wght=700":622}},{"coordinate":{"default":912,"wght=700":922}}],"kaLow_signThamAitham":[{"coordinate":622}],"kxaLow_raMedial_signAitham":[{"coordinate":{"wght=700":622,"default":602}},{"coordinate":{"default":922,"wght=700":942}}],"kxaLow_signEtham":[{"coordinate":622}],"kxaLow_raMedialtham":[{"coordinate":{"default":352,"wght=700":402}}],"kxaLow_raMedial_signOotham":[{"coordinate":{"default":627,"wght=700":642}},{"coordinate":{"default":947,"wght=700":962}}],"kaLow_raMedial_signOotham":[{"coordinate":612},{"coordinate":892}],"kxaLow_signAetham":[{"coordinate":1182}],"kxaLow_signThamAitham":[{"coordinate":642}],"kxaLow_signAitham":[{"coordinate":{"default":622,"wght=700":642}}],"kxaLow_raMedial_signThamAitham":[{"coordinate":{"wght=700":632,"default":612}},{"coordinate":{"default":932,"wght=700":952}}],"khaLow_raMedial_signEtham":[{"coordinate":{"default":572,"wght=700":592}},{"coordinate":{"default":882,"wght=700":912}}],"khaLow_raMedialtham":[{"coordinate":{"wght=700":342,"default":301}}],"kxaLow_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}},{"coordinate":{"wght=700":1472,"default":1462}}],"khaLow_raMedial_signThamAitham":[{"coordinate":{"default":612,"wght=700":642}},{"coordinate":{"default":892,"wght=700":942}}],"kxaLow_signOotham":[{"coordinate":642}],"khaLow_raMedial_signAitham":[{"coordinate":{"default":602,"wght=700":622}},{"coordinate":{"wght=700":942,"default":892}}],"khaLow_raMedial_signOotham":[{"coordinate":{"wght=700":642,"default":622}},{"coordinate":{"wght=700":942,"default":902}}],"khaLow_raMedial_signAetham":[{"coordinate":{"wght=700":1152,"default":1142}},{"coordinate":{"default":1442,"wght=700":1472}}],"khaLow_signAitham":[{"coordinate":{"default":612,"wght=700":642}}],"khaLow_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}}],"khaLow_signOotham":[{"coordinate":{"default":622,"wght=700":642}}],"khaLow_signThamAitham":[{"coordinate":{"default":622,"wght=700":642}}],"khaLow_signEtham":[{"coordinate":{"default":592,"wght=700":612}}],"nga_raMedial_signAetham":[{"coordinate":{"default":1122,"wght=700":1172}},{"coordinate":{"default":1432,"wght=700":1482}}],"nga_raMedial_signOotham":[{"coordinate":{"wght=700":602,"default":592}},{"coordinate":{"default":902,"wght=700":912}}],"nga_raMedialtham":[{"coordinate":{"default":302,"wght=700":342}}],"nga_raMedial_signAitham":[{"coordinate":{"default":572,"wght=700":582}},{"coordinate":{"wght=700":892,"default":882}}],"nga_signEtham":[{"coordinate":602}],"nga_raMedial_signEtham":[{"coordinate":{"wght=700":602,"default":592}},{"coordinate":{"wght=700":912,"default":882}}],"nga_raMedial_signThamAitham":[{"coordinate":{"wght=700":612,"default":592}},{"coordinate":{"default":902,"wght=700":922}}],"nga_signThamAitham":[{"coordinate":632}],"nga_signOotham":[{"coordinate":632}],"caHigh_raMedial_signEtham":[{"coordinate":{"default":572,"wght=700":592}},{"coordinate":{"wght=700":902,"default":882}}],"nga_signAitham":[{"coordinate":632}],"caHigh_raMedial_signOotham":[{"coordinate":{"wght=700":612,"default":590}},{"coordinate":{"wght=700":922,"default":900}}],"caHigh_raMedial_signAetham":[{"coordinate":{"wght=700":1132,"default":1152}},{"coordinate":{"wght=700":1442,"default":1422}}],"nga_signAetham":[{"coordinate":1162}],"caHigh_raMedialtham":[{"coordinate":292}],"caHigh_signEtham":[{"coordinate":602}],"caHigh_raMedial_signThamAitham":[{"coordinate":{"wght=700":612,"default":592}},{"coordinate":{"default":902,"wght=700":922}}],"caHigh_signAetham":[{"coordinate":1152}],"caHigh_raMedial_signAitham":[{"coordinate":{"wght=700":602,"default":592}},{"coordinate":{"default":902,"wght=700":912}}],"caHigh_signThamAitham":[{"coordinate":622}],"caHigh_signOotham":[{"coordinate":{"wght=700":602,"default":612}}],"caHigh_signAitham":[{"coordinate":602}],"chaHigh_raMedialtham":[{"coordinate":{"wght=700":342,"default":292}}],"chaHigh_raMedial_signEtham":[{"coordinate":{"wght=700":622,"default":592}},{"coordinate":{"default":872,"wght=700":902}}],"chaHigh_signAetham":[{"coordinate":{"default":1142,"wght=700":1162}}],"chaHigh_raMedial_signAetham":[{"coordinate":{"wght=700":1152,"default":1142}},{"coordinate":{"default":1422,"wght=700":1432}}],"chaHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"chaHigh_signOotham":[{"coordinate":622}],"caLow_raMedialtham":[{"coordinate":{"wght=700":322,"default":302}}],"chaHigh_signAitham":[{"coordinate":622}],"chaHigh_raMedial_signOotham":[{"coordinate":{"wght=700":622,"default":602}},{"coordinate":{"default":882,"wght=700":902}}],"chaHigh_signEtham":[{"coordinate":602}],"chaHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"chaHigh_signThamAitham":[{"coordinate":622}],"caLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"caLow_raMedial_signEtham":[{"coordinate":612},{"coordinate":892}],"caLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"caLow_raMedial_signAetham":[{"coordinate":{"wght=700":1182,"default":1162}},{"coordinate":{"wght=700":1462,"default":1442}}],"caLow_signEtham":[{"coordinate":602}],"caLow_signAetham":[{"coordinate":{"wght=700":1152,"default":1162}}],"caLow_signOotham":[{"coordinate":622}],"saLow_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"caLow_signThamAitham":[{"coordinate":622}],"caLow_signAitham":[{"coordinate":622}],"saLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"saLow_signEtham":[{"coordinate":602}],"caLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"saLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"saLow_signAitham":[{"coordinate":622}],"saLow_signThamAitham":[{"coordinate":622}],"saLow_signOotham":[{"coordinate":622}],"chaLow_raMedialtham":[{"coordinate":{"default":312,"wght=700":332}}],"saLow_signAetham":[{"coordinate":{"default":1172,"wght=700":1162}}],"saLow_raMedial_signAetham":[{"coordinate":1162},{"coordinate":1442}],"chaLow_raMedial_signAetham":[{"coordinate":{"wght=700":1162,"default":1152}},{"coordinate":{"default":1432,"wght=700":1442}}],"chaLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"saLow_raMedialtham":[{"coordinate":{"default":332,"wght=700":342}}],"chaLow_raMedial_signEtham":[{"coordinate":602},{"coordinate":882}],"saLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"chaLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"chaLow_signAetham":[{"coordinate":1162}],"chaLow_signThamAitham":[{"coordinate":622}],"chaLow_signOotham":[{"coordinate":622}],"chaLow_signAitham":[{"coordinate":622}],"nya_raMedialtham":[{"coordinate":{"default":322,"wght=700":342}}],"nya_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"chaLow_raMedial_signThamAitham":[{"coordinate":{"wght=700":642,"default":623}},{"coordinate":{"default":903,"wght=700":922}}],"nya_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"nya_signEtham":[{"coordinate":602}],"chaLow_signEtham":[{"coordinate":602}],"nya_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"nya_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"nya_signAetham":[{"coordinate":{"default":1142,"wght=700":1152}}],"nya_signThamAitham":[{"coordinate":622}],"rata_raMedialtham":[{"coordinate":{"wght=700":322,"default":302}}],"nya_signAitham":[{"coordinate":622}],"nya_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"rata_raMedial_signEtham":[{"coordinate":{"default":592,"wght=700":602}},{"coordinate":{"default":872,"wght=700":882}}],"rata_raMedial_signAetham":[{"coordinate":{"wght=700":1172,"default":1162}},{"coordinate":{"wght=700":1452,"default":1442}}],"rata_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"nya_signOotham":[{"coordinate":622}],"rata_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"rata_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"rata_signAetham":[{"coordinate":{"default":1172,"wght=700":1182}}],"rata_signEtham":[{"coordinate":602}],"rata_signThamAitham":[{"coordinate":622}],"rathaHigh_rM_signAitham":[{"coordinate":622},{"coordinate":902}],"rata_signOotham":[{"coordinate":622}],"rata_signAitham":[{"coordinate":622}],"rathaHigh_raMedial_signEtham":[{"coordinate":{"wght=700":622,"default":612}},{"coordinate":{"wght=700":902,"default":892}}],"rathaHigh_rM_signThamAitham":[{"coordinate":622},{"coordinate":902}],"rathaHigh_raMedial_signAetham":[{"coordinate":{"default":1162,"wght=700":1152}},{"coordinate":{"wght=700":1432,"default":1442}}],"rathaHigh_signAetham":[{"coordinate":{"wght=700":1182,"default":1152}}],"rathaHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"rathaHigh_raMedialtham":[{"coordinate":{"wght=700":372,"default":322}}],"rathaHigh_signOotham":[{"coordinate":622}],"rathaHigh_signAitham":[{"coordinate":622}],"rathaHigh_signEtham":[{"coordinate":602}],"da_raMedialtham":[{"coordinate":{"default":282,"wght=700":292}}],"rathaHigh_signThamAitham":[{"coordinate":622}],"da_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"da_raMedial_signEtham":[{"coordinate":{"default":592,"wght=700":602}},{"coordinate":{"wght=700":882,"default":872}}],"da_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"da_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"da_signAetham":[{"coordinate":{"default":1122,"wght=700":1152}}],"da_raMedial_signAetham":[{"coordinate":{"default":1142,"wght=700":1172}},{"coordinate":{"wght=700":1452,"default":1422}}],"da_signAitham":[{"coordinate":622}],"da_signThamAitham":[{"coordinate":622}],"da_signEtham":[{"coordinate":602}],"rathaLow_rM_signThamAitham":[{"coordinate":622},{"coordinate":902}],"rathaLow_raMedialtham":[{"coordinate":{"default":292,"wght=700":322}}],"da_signOotham":[{"coordinate":{"default":592,"wght=700":622}}],"rathaLow_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"rathaLow_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}},{"coordinate":{"wght=700":1442,"default":1432}}],"rathaLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"rathaLow_signEtham":[{"coordinate":602}],"rathaLow_rM_signAitham":[{"coordinate":622},{"coordinate":902}],"rathaLow_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}}],"rathaLow_signThamAitham":[{"coordinate":622}],"rana_raMedialtham":[{"coordinate":{"wght=700":322,"default":312}}],"rathaLow_signOotham":[{"coordinate":622}],"rathaLow_signAitham":[{"coordinate":622}],"rana_raMedial_signAetham":[{"coordinate":{"wght=700":1162,"default":1152}},{"coordinate":{"default":1432,"wght=700":1442}}],"rana_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"rana_raMedial_signEtham":[{"coordinate":{"default":602,"wght=700":622}},{"coordinate":{"default":882,"wght=700":902}}],"rana_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"rana_signAetham":[{"coordinate":{"wght=700":1172,"default":1162}}],"rana_signOotham":[{"coordinate":622}],"taHigh_raMedialtham":[{"coordinate":{"wght=700":322,"default":302}}],"rana_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"rana_signEtham":[{"coordinate":602}],"rana_signAitham":[{"coordinate":622}],"taHigh_raMedial_signEtham":[{"coordinate":602},{"coordinate":882}],"taHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"taHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"taHigh_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"rana_signThamAitham":[{"coordinate":622}],"taHigh_signOotham":[{"coordinate":622}],"taHigh_signEtham":[{"coordinate":622}],"taHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"taHigh_signAitham":[{"coordinate":622}],"thaHigh_raMedial_signEtham":[{"coordinate":{"default":572,"wght=700":592}},{"coordinate":{"default":882,"wght=700":902}}],"taHigh_signThamAitham":[{"coordinate":622}],"thaHigh_raMedial_signOotham":[{"coordinate":{"wght=700":612,"default":592}},{"coordinate":{"default":902,"wght=700":922}}],"thaHigh_raMedial_signAetham":[{"coordinate":{"wght=700":1172,"default":1152}},{"coordinate":{"default":1442,"wght=700":1482}}],"taHigh_signAetham":[{"coordinate":{"wght=700":1152,"default":1122}}],"thaHigh_raMedialtham":[{"coordinate":{"wght=700":322,"default":292}}],"thaHigh_raMedial_signAitham":[{"coordinate":{"default":592,"wght=700":612}},{"coordinate":{"wght=700":922,"default":902}}],"thaHigh_signEtham":[{"coordinate":{"default":592,"wght=700":602}}],"thaHigh_signAetham":[{"coordinate":1172}],"thaHigh_signOotham":[{"coordinate":{"wght=700":632,"default":622}}],"thaHigh_signAitham":[{"coordinate":{"wght=700":642,"default":622}}],"thaHigh_signThamAitham":[{"coordinate":{"default":622,"wght=700":672}}],"taLow_raMedial_signEtham":[{"coordinate":{"default":592,"wght=700":602}},{"coordinate":{"wght=700":912,"default":902}}],"taLow_raMedial_signAitham":[{"coordinate":{"default":592,"wght=700":612}},{"coordinate":{"wght=700":922,"default":902}}],"taLow_raMedialtham":[{"coordinate":{"wght=700":352,"default":302}}],"thaHigh_raMedial_signThamAitham":[{"coordinate":{"default":612,"wght=700":622}},{"coordinate":{"default":922,"wght=700":932}}],"taLow_raMedial_signOotham":[{"coordinate":{"wght=700":612,"default":602}},{"coordinate":{"default":912,"wght=700":922}}],"taLow_raMedial_signThamAitham":[{"coordinate":632},{"coordinate":942}],"taLow_signOotham":[{"coordinate":642}],"taLow_signEtham":[{"coordinate":{"default":572,"wght=700":612}}],"taLow_signAetham":[{"coordinate":1172}],"taLow_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}},{"coordinate":{"wght=700":1482,"default":1462}}],"taLow_signThamAitham":[{"coordinate":622}],"thaLow_raMedialtham":[{"coordinate":302}],"taLow_signAitham":[{"coordinate":622}],"thaLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"thaLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"thaLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"thaLow_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"thaLow_signEtham":[{"coordinate":602}],"thaLow_raMedial_signAetham":[{"coordinate":1142},{"coordinate":1422}],"thaLow_signOotham":[{"coordinate":622}],"thaLow_signAitham":[{"coordinate":622}],"thaLow_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}}],"na_raMedialtham":[{"coordinate":322}],"thaLow_signThamAitham":[{"coordinate":622}],"na_signEtham":[{"coordinate":602}],"na_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"na_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"na_raMedial_signEtham":[{"coordinate":{"wght=700":602,"default":582}},{"coordinate":{"default":862,"wght=700":882}}],"na_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"na_signOotham":[{"coordinate":622}],"na_signAitham":[{"coordinate":622}],"na_signThamAitham":[{"coordinate":622}],"na_raMedial_signAetham":[{"coordinate":{"wght=700":1172,"default":1162}},{"coordinate":{"default":1442,"wght=700":1452}}],"ba_raMedial_signAetham":[{"coordinate":{"default":1142,"wght=700":1152}},{"coordinate":{"wght=700":1432,"default":1422}}],"ba_raMedial_signEtham":[{"coordinate":{"default":602,"wght=700":622}},{"coordinate":{"wght=700":902,"default":882}}],"ba_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"ba_signAetham":[{"coordinate":{"wght=700":1182,"default":1152}}],"ba_signOotham":[{"coordinate":622}],"ba_signEtham":[{"coordinate":{"default":602,"wght=700":622}}],"na_signAetham":[{"coordinate":{"wght=700":1162,"default":1152}}],"ba_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"ba_raMedialtham":[{"coordinate":{"wght=700":322,"default":302}}],"paHigh_raMedialtham":[{"coordinate":{"default":362,"wght=700":352}}],"ba_signThamAitham":[{"coordinate":622}],"ba_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"paHigh_raMedial_signAetham":[{"coordinate":1162},{"coordinate":1442}],"paHigh_raMedial_signEtham":[{"coordinate":{"default":571,"wght=700":592}},{"coordinate":{"default":851,"wght=700":872}}],"paHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"paHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"paHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"ba_signAitham":[{"coordinate":622}],"paHigh_signThamAitham":[{"coordinate":622}],"paHigh_signOotham":[{"coordinate":622}],"phaHigh_raMedial_signEtham":[{"coordinate":{"default":592,"wght=700":602}},{"coordinate":{"default":872,"wght=700":882}}],"paHigh_signEtham":[{"coordinate":622}],"phaHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"paHigh_signAitham":[{"coordinate":622}],"paHigh_signAetham":[{"coordinate":{"wght=700":1172,"default":1142}}],"phaHigh_raMedial_signAetham":[{"coordinate":{"wght=700":1172,"default":1162}},{"coordinate":{"default":1442,"wght=700":1452}}],"phaHigh_raMedialtham":[{"coordinate":{"default":302,"wght=700":322}}],"phaHigh_signEtham":[{"coordinate":592}],"phaHigh_signOotham":[{"coordinate":622}],"faHigh_raMedialtham":[{"coordinate":322}],"phaHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"phaHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"phaHigh_signThamAitham":[{"coordinate":622}],"phaHigh_signAitham":[{"coordinate":622}],"faHigh_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"faHigh_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"faHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"phaHigh_signAetham":[{"coordinate":1142}],"faHigh_signAetham":[{"coordinate":{"default":1142,"wght=700":1152}}],"faHigh_signAitham":[{"coordinate":622}],"faHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"faHigh_signEtham":[{"coordinate":592}],"faHigh_signOotham":[{"coordinate":622}],"faHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"paLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"paLow_raMedialtham":[{"coordinate":{"wght=700":352,"default":332}}],"paLow_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"faHigh_signThamAitham":[{"coordinate":622}],"paLow_signAetham":[{"coordinate":{"wght=700":1152,"default":1142}}],"paLow_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"paLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"paLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"paLow_signOotham":[{"coordinate":622}],"paLow_signAitham":[{"coordinate":622}],"paLow_signThamAitham":[{"coordinate":622}],"faLow_raMedial_signEtham":[{"coordinate":{"default":602,"wght=700":622}},{"coordinate":{"wght=700":902,"default":882}}],"faLow_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}},{"coordinate":{"wght=700":1442,"default":1432}}],"faLow_raMedialtham":[{"coordinate":372}],"paLow_signEtham":[{"coordinate":592}],"faLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"faLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"faLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"faLow_signAitham":[{"coordinate":622}],"faLow_signAetham":[{"coordinate":{"default":1172,"wght=700":1182}}],"faLow_signOotham":[{"coordinate":622}],"faLow_signEtham":[{"coordinate":592}],"faLow_signThamAitham":[{"coordinate":622}],"phaLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"phaLow_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"phaLow_raMedialtham":[{"coordinate":{"wght=700":312,"default":302}}],"phaLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"phaLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"phaLow_signAetham":[{"coordinate":1152}],"phaLow_signOotham":[{"coordinate":622}],"phaLow_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"phaLow_signEtham":[{"coordinate":592}],"phaLow_signAitham":[{"coordinate":622}],"phaLow_signThamAitham":[{"coordinate":{"default":582,"wght=700":622}}],"ma_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}},{"coordinate":{"wght=700":1442,"default":1432}}],"ma_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"ma_raMedialtham":[{"coordinate":{"wght=700":342,"default":312}}],"ma_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"ma_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":{"default":902,"wght=700":932}}],"ma_signEtham":[{"coordinate":592}],"ma_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"ma_signOotham":[{"coordinate":622}],"ma_signThamAitham":[{"coordinate":622}],"yaLow_raMedialtham":[{"coordinate":{"wght=700":322,"default":302}}],"ma_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}}],"ma_signAitham":[{"coordinate":622}],"yaLow_raMedial_signEtham":[{"coordinate":{"default":582,"wght=700":592}},{"coordinate":{"default":862,"wght=700":872}}],"yaLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"yaLow_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"yaLow_signEtham":[{"coordinate":592}],"yaLow_signAetham":[{"coordinate":{"default":1152,"wght=700":1182}}],"yaLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"yaLow_signThamAitham":[{"coordinate":622}],"yaLow_signOotham":[{"coordinate":622}],"yaHigh_raMedial_signEtham":[{"coordinate":{"wght=700":602,"default":572}},{"coordinate":{"default":852,"wght=700":882}}],"yaLow_signAitham":[{"coordinate":622}],"yaHigh_raMedialtham":[{"coordinate":{"default":322,"wght=700":352}}],"yaHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"yaHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"yaHigh_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"yaLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"yaHigh_signEtham":[{"coordinate":592}],"yaHigh_signOotham":[{"coordinate":622}],"yaHigh_signAitham":[{"coordinate":622}],"yaHigh_signThamAitham":[{"coordinate":622}],"yaHigh_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}}],"ra_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"ra_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"yaHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"ra_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"ra_raMedialtham":[{"coordinate":{"wght=700":342,"default":322}}],"ra_raMedial_signThamAitham":[{"coordinate":{"default":622,"wght=700":632}},{"coordinate":{"wght=700":912,"default":902}}],"ra_signEtham":[{"coordinate":592}],"ra_signOotham":[{"coordinate":622}],"rue_raMedialtham":[{"coordinate":{"default":302,"wght=700":362}}],"ra_signAitham":[{"coordinate":622}],"ra_signThamAitham":[{"coordinate":622}],"rue_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"ra_raMedial_signAetham":[{"coordinate":1152},{"coordinate":1432}],"rue_raMedial_signAetham":[{"coordinate":{"wght=700":1172,"default":1142}},{"coordinate":{"default":1422,"wght=700":1452}}],"ra_signAetham":[{"coordinate":{"wght=700":1165,"default":1162}}],"rue_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"rue_signEtham":[{"coordinate":622}],"rue_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}}],"rue_signAitham":[{"coordinate":622}],"rue_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"rue_signOotham":[{"coordinate":622}],"la_raMedialtham":[{"coordinate":{"wght=700":342,"default":322}}],"rue_signThamAitham":[{"coordinate":622}],"rue_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"la_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"la_raMedial_signAetham":[{"coordinate":{"wght=700":1162,"default":1152}},{"coordinate":{"default":1432,"wght=700":1442}}],"la_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"la_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"la_signEtham":[{"coordinate":592}],"la_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"lue_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"la_signAitham":[{"coordinate":622}],"lue_raMedialtham":[{"coordinate":{"default":362,"wght=700":382}}],"la_signAetham":[{"coordinate":{"wght=700":1172,"default":1161}}],"lue_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}},{"coordinate":{"default":1432,"wght=700":1452}}],"la_signThamAitham":[{"coordinate":622}],"lue_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"lue_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"lue_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"lue_signEtham":[{"coordinate":622}],"lue_signAitham":[{"coordinate":622}],"lue_signOotham":[{"coordinate":622}],"lue_signThamAitham":[{"coordinate":622}],"la_signOotham":[{"coordinate":622}],"lue_signAetham":[{"coordinate":{"wght=700":1152,"default":1132}}],"wa_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"wa_raMedial_signAetham":[{"coordinate":{"default":1162,"wght=700":1152}},{"coordinate":{"wght=700":1432,"default":1442}}],"wa_signEtham":[{"coordinate":602}],"wa_raMedialtham":[{"coordinate":322}],"wa_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"wa_signAetham":[{"coordinate":{"default":1162,"wght=700":1172}}],"wa_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"wa_signOotham":[{"coordinate":622}],"wa_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"wa_signThamAitham":[{"coordinate":622}],"wa_signAitham":[{"coordinate":622}],"shaHigh_raMedial_signAetham":[{"coordinate":{"default":1162,"wght=700":1172}},{"coordinate":{"default":1442,"wght=700":1452}}],"shaHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"shaHigh_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"shaHigh_signEtham":[{"coordinate":602}],"shaHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"shaHigh_signAetham":[{"coordinate":1162}],"shaHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"shaHigh_signThamAitham":[{"coordinate":622}],"shaHigh_raMedialtham":[{"coordinate":{"wght=700":352,"default":342}}],"shaHigh_signAitham":[{"coordinate":622}],"ssaHigh_raMedial_signAetham":[{"coordinate":1142},{"coordinate":1422}],"ssaHigh_raMedialtham":[{"coordinate":{"wght=700":322,"default":312}}],"shaHigh_signOotham":[{"coordinate":622}],"ssaHigh_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"ssaHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"ssaHigh_signEtham":[{"coordinate":{"wght=700":612,"default":602}}],"ssaHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"ssaHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"ssaHigh_signAitham":[{"coordinate":622}],"ssaHigh_signThamAitham":[{"coordinate":622}],"ssaHigh_signOotham":[{"coordinate":622}],"ssaHigh_signAetham":[{"coordinate":{"wght=700":1152,"default":1162}}],"saHigh_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"saHigh_raMedial_signAetham":[{"coordinate":1142},{"coordinate":1422}],"saHigh_raMedialtham":[{"coordinate":{"wght=700":322,"default":292}}],"saHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"saHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"saHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"saHigh_signOotham":[{"coordinate":622}],"saHigh_signAetham":[{"coordinate":1162}],"saHigh_signEtham":[{"coordinate":602}],"haHigh_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"saHigh_signThamAitham":[{"coordinate":622}],"haHigh_raMedialtham":[{"coordinate":322}],"saHigh_signAitham":[{"coordinate":622}],"haHigh_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"haHigh_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}}],"haHigh_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"haHigh_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"haHigh_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1162}},{"coordinate":{"default":1432,"wght=700":1442}}],"haHigh_signEtham":[{"coordinate":602}],"haHigh_signThamAitham":[{"coordinate":622}],"lla_raMedialtham":[{"coordinate":{"wght=700":352,"default":322}}],"lla_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"haHigh_signOotham":[{"coordinate":622}],"lla_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"lla_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"lla_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"lla_signEtham":[{"coordinate":602}],"haHigh_signAitham":[{"coordinate":{"wght=700":611,"default":621}}],"lla_signAetham":[{"coordinate":{"default":1172,"wght=700":1162}}],"lla_raMedial_signAetham":[{"coordinate":1182},{"coordinate":1462}],"lla_signOotham":[{"coordinate":622}],"lla_signAitham":[{"coordinate":622}],"lla_signThamAitham":[{"coordinate":622}],"a_raMedial_signAetham":[{"coordinate":1142},{"coordinate":1422}],"a_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"uni00611A55":[{"coordinate":{"wght=700":312,"default":292}}],"a_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"a_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"uni00611A6F":[{"coordinate":{"wght=700":1172,"default":1152}}],"uni00611A70":[{"coordinate":622}],"uni00611A6E":[{"coordinate":602}],"haLow_raMedial_signEtham":[{"coordinate":622},{"coordinate":902}],"uni00611A72":[{"coordinate":622}],"uni00611A71":[{"coordinate":622}],"haLow_raMedial_signAetham":[{"coordinate":{"default":1152,"wght=700":1172}},{"coordinate":{"wght=700":1452,"default":1432}}],"a_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"haLow_raMedial_signOotham":[{"coordinate":622},{"coordinate":902}],"haLow_signEtham":[{"coordinate":602}],"haLow_signAetham":[{"coordinate":1172}],"haLow_raMedialtham":[{"coordinate":{"default":322,"wght=700":342}}],"haLow_raMedial_signAitham":[{"coordinate":622},{"coordinate":902}],"haLow_signAitham":[{"coordinate":622}],"haLow_signThamAitham":[{"coordinate":{"default":625,"wght=700":645}}],"greatSa_raMedialtham":[{"coordinate":325}],"haLow_raMedial_signThamAitham":[{"coordinate":622},{"coordinate":902}],"haLow_signOotham":[{"coordinate":622}],"greatSa_raMedial_signAetham":[{"coordinate":1155},{"coordinate":1439}],"greatSa_signEtham":[{"coordinate":602}],"greatSa_signAetham":[{"coordinate":1155}],"greatSa_signOotham":[{"coordinate":615}],"greatSa_raMedial_signOotham":[{"coordinate":615},{"coordinate":899}],"greatSa_raMedial_signThamAitham":[{"coordinate":615},{"coordinate":{"wght=700":939,"default":899}}],"greatSa_signAitham":[{"coordinate":615}],"greatSa_raMedial_signAitham":[{"coordinate":{"wght=700":615,"default":605}},{"coordinate":{"wght=700":899,"default":889}}],"greatSa_raMedial_signEtham":[{"coordinate":615},{"coordinate":899}],"greatSa_signThamAitham":[{"coordinate":{"default":615,"wght=700":625}}],"uni1A55_uni1A20_uni1A70":[{"coordinate":678},{"coordinate":999}],"uni1A55_uni1A20_uni1A6F":[{"coordinate":{"default":1212,"wght=700":1217}},{"coordinate":{"wght=700":1542,"default":1537}}],"uni1A55_uni1A20_uni1A72":[{"coordinate":667},{"coordinate":991}],"paHigh_signEtham.alt":[{"coordinate":{"wght=700":602,"default":582}}],"uni1A55_uni1A20_uni1A71":[{"coordinate":639},{"coordinate":985}],"uni1A55_uni1A20_uni1A6E":[{"coordinate":{"wght=700":658,"default":653}},{"coordinate":{"wght=700":990,"default":985}}],"wa_yaLowtham.alt":[{"coordinate":{"default":572,"wght=700":592}}],"uni1A52":[{"coordinate":{"default":272,"wght=700":312}}],"nya.nya_raMedialtham":[{"coordinate":{"wght=700":421,"default":386}}],"nya.nya_raMedial_signEtham":[{"coordinate":596},{"coordinate":{"default":956,"wght=700":996}}],"nya.nya_raMedial_signAetham":[{"coordinate":{"wght=700":1136,"default":1146}},{"coordinate":{"default":1516,"wght=700":1536}}],"nya.nya_raMedial_signOotham":[{"coordinate":{"wght=700":616,"default":586}},{"coordinate":{"default":956,"wght=700":986}}],"nya.nya_signAetham":[{"coordinate":1176}],"nya.nya_raMedial_signAitham":[{"coordinate":{"default":576,"wght=700":626}},{"coordinate":{"default":926,"wght=700":996}}],"nya.nya_signOotham":[{"coordinate":616}],"nya.nya_signAitham":[{"coordinate":{"default":616,"wght=700":606}}],"rata.rathaHigh_raMedialtham":[{"coordinate":{"wght=700":396,"default":346}}],"nya.nya_raMedial_signThamAitham":[{"coordinate":{"default":586,"wght=700":666}},{"coordinate":{"wght=700":1016,"default":936}}],"rata.rathaHigh_rM_signAetham":[{"coordinate":{"default":1146,"wght=700":1186}},{"coordinate":{"wght=700":1556,"default":1516}}],"rata.rathaHigh_rM_signOotham":[{"coordinate":606},{"coordinate":976}],"ra.rathaHigh_rM_signThamAitham":[{"coordinate":{"wght=700":606,"default":596}},{"coordinate":{"wght=700":976,"default":966}}],"rata.rathaHigh_rM_signAitham":[{"coordinate":{"default":596,"wght=700":593}},{"coordinate":{"default":966,"wght=700":963}}],"rata.rathaHigh_signEtham":[{"coordinate":606}],"rata.rathaHigh_signAetham":[{"coordinate":{"default":1166,"wght=700":1168}}],"nya.nya_signThamAitham":[{"coordinate":646}],"rata.rathaHigh_rM_signEtham":[{"coordinate":{"default":556,"wght=700":586}},{"coordinate":{"wght=700":956,"default":926}}],"rata.rathaHigh_signOotham":[{"coordinate":{"default":626,"wght=700":646}}],"rata.rathaHigh_signAitham":[{"coordinate":{"wght=700":636,"default":596}}],"rata.rathaHigh_signThamAitham":[{"coordinate":{"wght=700":636,"default":596}}],"nasignAa_raMedialtham":[{"coordinate":{"wght=700":356,"default":326}}],"nasignAa_raMedial_signAetham":[{"coordinate":1136},{"coordinate":1466}],"nasignAa_raMedial_signEtham":[{"coordinate":566},{"coordinate":936}],"nasignAa_raMedial_signAitham":[{"coordinate":{"default":616,"wght=700":636}},{"coordinate":{"default":946,"wght=700":966}}],"nasignAa_raMedial_signOotham":[{"coordinate":{"default":600,"wght=700":636}},{"coordinate":{"wght=700":966,"default":930}}],"nasignAa_rM_signThamAitham":[{"coordinate":{"default":646,"wght=700":666}},{"coordinate":{"default":976,"wght=700":996}}],"nasignAa_signEtham":[{"coordinate":{"default":636,"wght=700":656}}],"nasignAa_signAetham":[{"coordinate":{"wght=700":1156,"default":1166}}],"nasignAa_signOotham":[{"coordinate":656}],"nasignAa_signAitham":[{"coordinate":666}],"nasignAa_signThamAitham":[{"coordinate":666}],"lla.haHigh_raMedialtham":[{"coordinate":{"default":346,"wght=700":406}}],"lla.haHigh_raMedial_signAetham":[{"coordinate":{"default":1146,"wght=700":1196}},{"coordinate":{"wght=700":1566,"default":1516}}],"nya.nya_signEtham":[{"coordinate":576}],"lla.haHigh_raMedial_signOotham":[{"coordinate":626},{"coordinate":996}],"lla.haHigh_raMedial_signAitham":[{"coordinate":{"wght=700":636,"default":616}},{"coordinate":{"default":986,"wght=700":1006}}],"lla.haHigh_rM_signThamAitham":[{"coordinate":{"wght=700":646,"default":616}},{"coordinate":{"default":986,"wght=700":1016}}],"lla.haHigh_signAetham":[{"coordinate":{"wght=700":1166,"default":1156}}],"lla.haHigh_signOotham":[{"coordinate":{"wght=700":636,"default":620}}],"lla.haHigh_signAitham":[{"coordinate":{"wght=700":626,"default":598}}],"lla.haHigh_signThamAitham":[{"coordinate":626}],"lla.haHigh_signEtham":[{"coordinate":{"default":596,"wght=700":606}}],"lla.haHigh_raMedial_signEtham":[{"coordinate":{"default":566,"wght=700":606}},{"coordinate":{"default":936,"wght=700":976}}]}]},"HVAR":{"item_variation_store_offset":{"item_variation_data_count":[1,2],"item_variation_data_offsets":{"0":{"item_count":[824,110],"word_delta_count":[1,0],"delta_sets":{"error":"There are 1645 changes, check manually!"}},"1":[null,{"item_count":3,"word_delta_count":1,"region_index_count":1,"region_indexes":[0],"delta_sets":[0,130,0,132,0,137]}]}},"advance_width_mapping_offset":["0x0000",{"format":0,"entry_format":6,"map_count":824,"map_data":[16,4,27,27,4,4,4,4,17,17,35,26,3,26,26,27,26,25,26,25,49,26,19,26,49,49,49,59,49,69,49,49,39,15,49,32,24,15,16,49,33,33,15,73,33,73,64,79,78,15,54,22,64,72,79,70,61,78,54,88,70,70,55,51,70,55,55,74,57,81,57,56,75,57,57,56,43,56,43,43,56,43,35,43,43,43,43,43,43,100,100,93,76,101,93,80,76,100,76,100,76,80,80,80,80,80,79,80,48,80,80,48,60,80,47,48,47,48,86,48,48,59,59,48,68,48,60,59,59,59,60,56,28,59,28,29,60,28,28,28,28,50,28,28,50,50,50,28,50,50,50,51,50,83,50,51,54,83,83,54,82,90,55,55,54,63,55,63,63,63,63,96,62,63,63,63,61,61,72,61,61,61,61,62,62,61,50,61,61,50,50,50,50,50,50,33,50,50,50,18,18,18,18,51,18,18,18,19,83,19,84,92,18,56,84,99,75,75,83,75,69,69,69,84,69,69,68,73,68,69,50,47,50,47,47,47,47,47,47,47,47,70,78,48,98,78,77,77,78,78,90,77,94,14,14,14,14,14,49,98,14,14,49,14,14,58,51,51,51,51,14,60,74,65,83,65,66,89,66,65,65,65,72,65,65,65,65,71,71,71,66,71,72,72,72,72,72,43,71,43,72,43,43,43,42,42,62,43,63,63,63,43,63,63,64,64,63,63,63,63,35,35,35,35,35,35,35,35,35,45,45,6,6,6,6,5,6,5,32,30,10,9,30,4,17,4,4,30,4,27,4,62,27,62,62,62,63,4,62,62,62,62,74,72,72,62,72,72,72,72,72,104,72,72,97,72,104,85,108,45,59,44,108,44,63,45,109,63,81,63,62,63,62,68,63,68,63,87,63,68,87,68,68,68,69,68,63,87,32,32,38,32,32,32,35,33,33,32,32,32,16,16,16,16,16,8,16,16,16,16,28,41,16,42,42,42,42,42,41,42,12,18,33,24,52,34,34,34,33,13,33,63,34,63,34,63,67,62,63,63,89,63,16,16,63,11,16,16,11,57,2,16,16,16,16,16,10,16,16,16,57,16,11,11,16,16,16,16,16,10,16,16,16,16,16,21,16,16,31,22,21,31,41,41,21,41,22,22,7,8,7,103,7,12,86,55,13,21,45,4,57,79,43,84,66,60,55,28,53,61,18,50,61,14,30,57,56,59,50,32,66,27,42,63,71,71,74,42,45,4,32,51,49,63,16,49,61,68,63,31,63,36,105,46,54,40,42,28,95,30,57,32,18,16,69,29,43,21,16,31,16,16,35,16,16,16,16,16,16,16,16,16,38,16,16,16,16,16,16,63,16,16,57,16,16,16,16,42,16,51,16,16,47,16,16,16,16,16,16,16,16,33,102,16,16,16,37,16,16,16,16,16,61,37,16,16,16,1,16,46,38,0,43,20,16,66,3,48,61,16,48,45,32,75,19,46,77,24,69,101,33,61,16,16,42,16,16,16,16,16,16,16,16,20,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,29,56,16,27,49,16,69,78,87,91,16,32,129,42,23,98,130,98,55,65,50,42,47,37,83,69,86,69,56,19,56,33,32,32,32,7,33,33,29,128,107,74,64,56,93,106,78,101,93,82,95,83,107,2]}]},"STAT":{"offset_to_axis_value_offsets":{"axis_value_offsets":{"0":{"value_name_id":["257","SUBFAMILY_NAME"]},"1":{"value_name_id":["258","259"]},"2":{"value_name_id":["259","261"]},"3":{"value_name_id":["260","263"]}}}},"fvar":{"axis_instance_arrays_offset":{"instances":{"0":{"subfamily_name_id":["261","257"],"post_script_name_id":[null,"258"]},"1":{"subfamily_name_id":["262","259"],"post_script_name_id":[null,"260"]},"2":{"subfamily_name_id":["263","261"],"post_script_name_id":[null,"262"]},"3":{"subfamily_name_id":["264","263"],"post_script_name_id":[null,"264"]}}},"instance_size":[8,10]},"head":{"checksum_adjustment":[3142064827,1125622275],"modified":[3746016880,3813911106]},"hhea":{"caret_slope_rise":[1,1000]},"loca":{"offsets":{"error":"There are 138 changes, check manually!"}},"name":{"LICENSE_DESCRIPTION":{"en-US":["This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL","This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org"]},"LICENSE_URL":{"en-US":["https://scripts.sil.org/OFL","https://openfontlicense.org"]},"256":{"en":[null,"Weight"]},"257":{"en":[null,"Regular"]},"258":{"en-US":["Medium","NotoSansTaiTham-Regular"],"en":[null,"NotoSansTaiTham-Regular"]},"259":{"en-US":["SemiBold","Medium"],"en":[null,"Medium"]},"260":{"en-US":["Bold","NotoSansTaiTham-Medium"],"en":[null,"NotoSansTaiTham-Medium"]},"261":{"en":["Regular","SemiBold"],"en-US":["Regular","SemiBold"]},"262":{"en":["Medium","NotoSansTaiTham-SemiBold"],"en-US":["Medium","NotoSansTaiTham-SemiBold"]},"263":{"en":["SemiBold","Bold"],"en-US":["SemiBold","Bold"]},"264":{"en":["Bold","NotoSansTaiTham-Bold"],"en-US":["Bold","NotoSansTaiTham-Bold"]}}},"cmap_diff":{}};
+		function buildLocation_statichtml(loc) {
+  // Set font styles to appropriate axis locations
+  let rule = document.styleSheets[0].cssRules[2].style;
+  let cssSetting = "";
+  let textLocation = "Default";
+  if (loc.coords) {
+    cssSetting = Object.entries(loc.coords)
+      .map(function ([axis, value]) {
+        return `"${axis}" ${value}`;
+      })
+      .join(", ");
+    textLocation = Object.entries(loc.coords)
+      .map(function ([axis, value]) {
+        return `${axis}=${value}`;
+      })
+      .join(" ");
+    rule.setProperty("font-variation-settings", cssSetting);
+  }
+
+  $("#main").empty();
+
+  $("#title").html(`<h4 class="mt-2">${textLocation}</h2>`);
+
+  if (loc.glyphs) {
+    $("#main").append("<h4>Modified Glyphs</h4>");
+    let glyphs = $("<div>");
+    for (let glyph of loc.glyphs) {
+      addAGlyph(glyph, glyphs);
+    }
+    $("#main").append(glyphs);
+  }
+
+  if (loc.words) {
+    $("#main").append("<h4>Modified Words</h4>");
+    for (let [script, words] of Object.entries(loc.words)) {
+      let scriptTitle = $(`<h6>${script}</h6>`);
+      $("#main").append(scriptTitle);
+      let worddiv = $("<div>");
+      for (let word of words) {
+        addAWord(word, worddiv);
+      }
+      $("#main").append(worddiv);
+    }
+  }
+  $('[data-toggle="tooltip"]').tooltip();
+}
+
+$(function () {
+  if (report["tables"]) {
+    diffTables(report);
+  }
+  if (report["kerns"]) {
+    diffKerns(report);
+  }
+  cmapDiff(report);
+  $('[data-toggle="tooltip"]').tooltip();
+  if (!report["locations"]) {
+    $("#title").html("<h4 class='mt-2'>No differences found</h4>");
+    $("#ui-nav").hide();
+    return;
+  }
+
+  for (var [index, loc] of report["locations"].entries()) {
+    var loc_nav = $(`<li class="nav-item">
+		<a class="nav-link text-secondary" href="#" data-index="${index}">${loc.location.replaceAll(
+      ",",
+      ",\u200b"
+    )}</a>
+	</li>`);
+    $("#locationnav").append(loc_nav);
+  }
+  $("#locationnav li a").on("click", function (e) {
+    $("#locationnav li a").removeClass("active");
+    $(this).addClass("active");
+    buildLocation_statichtml(report.locations[$(this).data("index")]);
+  });
+  $("#locationnav li a").eq(0).click();
+
+  document.styleSheets[0].cssRules[0].style.setProperty(
+    "src",
+    "url(old-NotoSansTaiTham[wght].ttf)"
+  );
+  document.styleSheets[0].cssRules[1].style.setProperty(
+    "src",
+    "url(new-NotoSansTaiTham[wght].ttf)"
+  );
+  setupAnimation();
+});
+
+	</script>
+</body>
+
+</html>
